@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+
+@theme {
+  --color-lol-bg: #0a0e13;
+  --color-lol-card: #161d27; /* #111720 */
+  --color-lol-gold: #c89b3c;
+  --color-lol-gold-light: #f0c960;
+  --color-lol-text: #d6d1c7;
+  --color-lol-text-muted: #a0917a;
+  --font-exo: "Exo 2", sans-serif;
+  --font-cinzel: "Cinzel", serif;
+  --color-lol-blue: #0a1628d9;
+  --color-lol-blue-light: #0d1f3bd9;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-lol-bg);
+    color: var(--color-lol-text);
+    min-height: 100dvh;
+    font-family: var(--font-exo);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  #root {
+    @apply min-h-full flex flex-col text-sm md:text-base lg:text-lg;
+    --swiper-theme-color: var(--color-lol-gold-light);
+    /* --swiper-navigation-color: var(--color-lol-gold);
+    --swiper-pagination-color: var(--color-lol-gold);
+    --swiper-pagination-bullet-inactive-color: var(--color-lol-text-muted);
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-bullet-size: 7px;
+    --swiper-pagination-bullet-horizontal-gap: 2px; */
+    --swiper-navigation-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  #root {
+    --swiper-navigation-size: 30px;
+  }
+}
+
+@media (min-width: 1280px) {
+  #root {
+    --swiper-navigation-size: 40px;
+  }
+}
+
+@media (min-width: 1920px) {
+  #root {
+    --swiper-navigation-size: 60px;
+  }
+}
+
+@media (min-width: 2560px) {
+  #root {
+    --swiper-navigation-size: 80px;
+  }
+}
+
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .role-banner {
+    @apply py-0.5 px-2 text-[12px] rounded-md font-bold border w-20;
+  }
+
+  .marksman {
+    @apply bg-amber-950/80 text-amber-400 border-amber-400;
+    box-shadow: 0 0 2px 1px rgb(251, 191, 36);
+  }
+
+  .assassin {
+    /* @apply bg-fuchsia-900/80 text-fuchsia-300 border-fuchsia-300; */
+    @apply bg-purple-950/80 text-purple-400 border-purple-400;
+    box-shadow: 0 0 2px 1px rgb(192, 132, 252);
+  }
+
+  .support {
+    @apply bg-emerald-950/80 text-emerald-400 border-emerald-400;
+    box-shadow: 0 0 2px 1px rgb(52, 211, 153);
+  }
+
+  .mage {
+    @apply bg-cyan-950/80 text-cyan-400 border-cyan-400;
+    box-shadow: 0 0 2px 1px rgb(34, 211, 238);
+  }
+
+  .fighter {
+    @apply bg-red-950/80 text-red-400 border-red-400;
+    box-shadow: 0 0 2px 1px rgb(248, 113, 113);
+  }
+
+  .tank {
+    @apply bg-blue-950/80 text-blue-400 border-blue-400;
+    box-shadow: 0 0 2px 1px rgb(96, 165, 250);
+  }
+
+  .form-container {
+    @apply mt-2 py-3 px-7 bg-lol-blue border-lol-blue-light border rounded-lg flex flex-col items-center justify-center gap-2 w-full;
+  }
+
+  .form-input {
+    @apply bg-lol-card text-lol-text ring ring-lol-blue-light rounded-md p-3 w-full focus:ring-2 focus:ring-emerald-400 placeholder:italic placeholder:text-lol-text/40 outline-none;
+  }
+
+  .form-label {
+    @apply text-lol-text-muted font-semibold;
+  }
+
+  .btn {
+    @apply text-lol-bg bg-emerald-600 hover:bg-emerald-300 cursor-pointer transition-colors duration-200 ease-in;
+  }
+
+  .alert {
+    @apply flex items-center justify-between gap-3 border p-3 rounded-lg w-full;
+  }
+
+  .details-wrapper {
+    @apply bg-lol-blue w-[95vw] mx-auto border-3 rounded-md border-lol-blue-light mt-5 md:mt-15 p-5 xl:p-10 flex flex-col items-center gap-2 xl:gap-10;
+  }
+
+  .details-title {
+    @apply font-bold text-2xl xl:text-4xl text-lol-gold flex gap-1 items-center;
+  }
+
+  .glass-panel {
+    @apply bg-lol-blue/80 backdrop-blur-md border-3 border-lol-blue-light rounded-xl;
+  }
+
+  .friendship-span {
+    @apply text-sm md:text-base lg:text-xl bg-lol-bg border border-lol-text-muted z-50 cursor-pointer px-3 py-1 flex justify-center items-center gap-2 rounded-md ml-auto w-fit;
+  }
+
+  .leaderboard-badge {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-linear-to-br;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-fade {
+    animation: fadeInScale 0.3s ease-in-out;
+  }
+}

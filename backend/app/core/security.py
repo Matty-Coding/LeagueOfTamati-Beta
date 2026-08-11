@@ -189,8 +189,8 @@ def set_tokens(response: Response, refresh_token: str, csrf_token: str) -> None:
         key="refresh_token",
         value=refresh_token,
         httponly=True,
-        secure=False,     # True in production
-        samesite="lax",
+        secure=True,     # True in production
+        samesite="none",
         max_age=60 * 60 * 24 * settings.REFRESH_TOKEN_EXPIRE
     )
 
