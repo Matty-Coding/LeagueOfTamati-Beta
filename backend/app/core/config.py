@@ -39,7 +39,8 @@ class Settings(BaseSettings):
 
     # cors
     ALLOWED_HOSTS: list[str] = [
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "https://league-of-tamati-beta.vercel.app"
     ]
 
     # models
