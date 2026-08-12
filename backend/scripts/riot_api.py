@@ -15,7 +15,7 @@ class ApiLeague:
         self.base_url: str = "https://ddragon.leagueoflegends.com"
         self.__session = requests.Session()
         self.logger = get_logger("api_data")
-        self.code_language: str = "en_US"
+        self.code_language: str = "it_IT"
         self.last_version = None
 
     def __clean_data(self, data: Any) -> Any:

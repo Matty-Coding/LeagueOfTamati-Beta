@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.utils.champion import get_data
 from app.schemas.wiki import Champion
-# miosito.com/wiki/asodfgalsbfalsbf
+
 router = APIRouter(
     prefix="/wiki",
     tags=["Wiki"],

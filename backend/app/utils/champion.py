@@ -5,7 +5,7 @@ from functools import lru_cache
 from re import sub, escape
 
 FILE_PATH = Path(__file__).parent.parent.parent / \
-    "shared" / "data" / "en_US.json"
+    "shared" / "data" / "it_IT.json"
 
 
 # caching in memory when function is called for the first time
