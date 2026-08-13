@@ -2,8 +2,8 @@ import { useEffect, useReducer, type JSX, type ReactNode } from "react";
 import type { AuthState, AuthAction } from "../types/auth";
 import { AuthContext } from "./auth.context";
 import { refreshTokenRequest } from "../services/auth";
-import Spinner from "../components/spinner";
 import { authActionsRef, authRef } from "../apis/interceptors";
+import SpinnerPage from "../utils/spinner-page";
 
 const initialState: AuthState = {
   user: null,
@@ -103,7 +103,7 @@ export function AuthProvider({
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {state.isLoading ? <Spinner /> : children}
+      {state.isLoading ? <SpinnerPage /> : children}
     </AuthContext.Provider>
   );
 }

@@ -15,9 +15,7 @@ export default function HomePage(): JSX.Element {
     document.title = "Home | League of Tamati";
   }, []);
 
-  const { isAuthenticated, user, isLoading } = useAuth();
-
-  if (isLoading) return <SpinnerPage />;
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <div className="flex flex-col min-h-dvh">
