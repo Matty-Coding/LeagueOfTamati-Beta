@@ -77,7 +77,6 @@
   }
 
   .assassin {
-    /* @apply bg-fuchsia-900/80 text-fuchsia-300 border-fuchsia-300; */
     @apply bg-purple-950/80 text-purple-400 border-purple-400;
     box-shadow: 0 0 2px 1px rgb(192, 132, 252);
   }
