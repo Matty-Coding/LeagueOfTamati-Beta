@@ -7,7 +7,6 @@ import { HiBookOpen, HiPuzzle } from "react-icons/hi";
 import { HiTrophy } from "react-icons/hi2";
 import { Footer } from "../components/footer";
 import { useAuth } from "../hooks/auth";
-import SpinnerPage from "../utils/spinner-page";
 
 export default function HomePage(): JSX.Element {
   // page title
