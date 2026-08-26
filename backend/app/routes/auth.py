@@ -61,6 +61,7 @@ async def login(
 ):
     try:
         tokens = await login_user(db, user)
+        print("CIAOOO\n", tokens)
     except ValueError as e:
         raise HTTPException(status_code=401, detail=str(e))
 
