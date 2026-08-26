@@ -203,11 +203,14 @@ def delete_cookie_tokens(response: Response) -> None:
     Deletes refresh token from cookie
     """
 
-    response.delete_cookie(
+    response.set_cookie(
         key=settings.REFRESH_TOKEN_COOKIE_NAME,
+        value="",
+        max_age=0,
+        expires=0,
         path="/",
-        samesite="none",
         secure=True,
         httponly=True,
-        partitioned=True
+        samesite="none",
+        partitioned=True,
     )
