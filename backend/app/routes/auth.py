@@ -119,7 +119,13 @@ async def refresh(
 
 @router.post("/logout", status_code=200)
 async def logout_user(response: Response):
-    response.delete_cookie(key="refresh_token")
+    response.delete_cookie(
+        key="refresh_token",
+        path="/",
+        samesite="none",
+        secure=True,
+        httponly=True,
+    )
     return {"message": "Logout successful"}
 
 
