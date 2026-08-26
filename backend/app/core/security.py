@@ -186,12 +186,28 @@ def set_tokens(response: Response, refresh_token: str, csrf_token: str) -> None:
     """
 
     response.set_cookie(
-        key="refresh_token",
+        key=settings.REFRESH_TOKEN_COOKIE_NAME,
         value=refresh_token,
         httponly=True,
         secure=True,     # True in production
         samesite="none",
-        max_age=60 * 60 * 24 * settings.REFRESH_TOKEN_EXPIRE
+        max_age=60 * 60 * 24 * settings.REFRESH_TOKEN_EXPIRE,
+        partitioned=True
     )
 
     response.headers["X-CSRF-Token"] = csrf_token
+
+
+def delete_cookie_tokens(response: Response) -> None:
+    """
+    Deletes refresh token from cookie
+    """
+
+    response.delete_cookie(
+        key=settings.REFRESH_TOKEN_COOKIE_NAME,
+        path="/",
+        samesite="none",
+        secure=True,
+        httponly=True,
+        partitioned=True
+    )

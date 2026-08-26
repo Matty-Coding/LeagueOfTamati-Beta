@@ -8,6 +8,8 @@ from app.schemas.user import ResetPasswordPayload, ResetPasswordConfirmPayload, 
 from app.services.auth import send_reset_password_token
 from app.services.user import reset_password, get_user, update_user_profile, get_current_rank
 from app.schemas.user import UserResponse, OtherUser
+from app.core.config import settings
+from app.core.security import delete_cookie_tokens
 
 router = APIRouter(
     prefix="/user",
@@ -59,8 +61,8 @@ async def reset_password_endpoint(
 ):
     try:
         await reset_password(db, token, payload.password)
-        if "refresh_token" in request.cookies:
-            response.delete_cookie("refresh_token")
+        if settings.REFRESH_TOKEN_COOKIE_NAME in request.cookies:
+            delete_cookie_tokens(response)
 
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

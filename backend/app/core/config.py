@@ -34,6 +34,8 @@ class Settings(BaseSettings):
     ACTIVATION_SECRET_KEY: str
     RESET_PASSWORD_SECRET_KEY: str
 
+    REFRESH_TOKEN_COOKIE_NAME: str = "__Host-refresh_token"
+
     # frontend url
     FRONTEND_URL: str
 

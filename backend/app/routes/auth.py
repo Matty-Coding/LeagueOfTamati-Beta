@@ -15,9 +15,10 @@ from app.services.auth import (
     refresh_user_token,
     resend_activation_token,
 )
-from app.core.security import set_tokens
+from app.core.security import set_tokens, delete_cookie_tokens
 from app.core.limiter import limiter
 from app.services.user import get_current_rank
+from app.core.config import settings
 
 router = APIRouter(
     prefix="/auth",
@@ -88,7 +89,8 @@ async def refresh(
     request: Request,
     response: Response,
     db: AsyncSession = Depends(get_db),
-    refresh_token: str | None = Cookie(default=None),
+    refresh_token: str | None = Cookie(
+        default=None, alias=settings.REFRESH_TOKEN_COOKIE_NAME),
 ):
     try:
         if not refresh_token:
@@ -119,13 +121,7 @@ async def refresh(
 
 @router.post("/logout", status_code=200)
 async def logout_user(response: Response):
-    response.delete_cookie(
-        key="refresh_token",
-        path="/",
-        samesite="none",
-        secure=True,
-        httponly=True,
-    )
+    delete_cookie_tokens(response)
     return {"message": "Logout successful"}
 
 
