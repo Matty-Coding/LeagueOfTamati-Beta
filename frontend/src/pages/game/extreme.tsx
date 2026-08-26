@@ -48,6 +48,7 @@ export default function ExtremeGamePage(): JSX.Element {
 
   const [timer, setTimer] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isStarting, setIsStarting] = useState<boolean>(false);
 
   const [gameOverModal, setGameOverModal] = useState<{
     isOpen: boolean;
@@ -108,6 +109,8 @@ export default function ExtremeGamePage(): JSX.Element {
 
   // start round
   const handleStart = async () => {
+    if (isStarting) return;
+    setIsStarting(true);
     Promise.all([startExtremeGame(), getSearchChampions()])
       .then(([response, champions]) => {
         setData(response);
@@ -125,7 +128,8 @@ export default function ExtremeGamePage(): JSX.Element {
           ),
         );
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setIsStarting(false));
   };
 
   // search champions
@@ -334,10 +338,11 @@ export default function ExtremeGamePage(): JSX.Element {
 
             <button
               type="button"
+              disabled={isStarting}
               className="btn px-8 py-4 mx-auto rounded-xl text-xl font-bold transition-all"
               onClick={handleStart}
             >
-              Start Game
+              {isStarting ? <Spinner /> : "Start Game"}
             </button>
           </div>
         </div>
