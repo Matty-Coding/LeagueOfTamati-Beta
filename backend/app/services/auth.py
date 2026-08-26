@@ -109,7 +109,7 @@ async def refresh_user_token(db: AsyncSession, refresh_token: str) -> dict:
     if not refresh_token_data:
         raise ValueError("Invalid refresh token")
 
-    db_user = await get_user_by_id(db, refresh_token_data["sub"])
+    db_user = await get_user_by_id(db, int(refresh_token_data["sub"]))
 
     if not db_user:
         raise ValueError("User not found")
